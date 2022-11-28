@@ -1,0 +1,14 @@
+/* 所有页面背景 */
+#aside_content .card-widget, #recent-posts>.recent-post-item, .layout_page>div:first-child:not(.recent-posts), .layout_post>#page, .layout_post>#post, .read-mode .layout_post>#post{
+    /* 最后一个值为透明度可以自己指定 */
+    background: rgba(255,255,255,.80);
+    /* 透明模糊亚克力 */
+    backdrop-filter: var(--backdrop-filter);
+}
+
+div#post {
+    
+    background: rgba(255,255,255,.80); /*最后一个值为透明度可以自己指定*/
+    
+    backdrop-filter: var(--backdrop-filter); /*透明模糊亚克力*/
+}

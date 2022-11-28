@@ -310,7 +310,7 @@ document.addEventListener('DOMContentLoaded', function () {
         }
       }, 200)
     
-    window.scrollCollect = scrollTask
+    z
 
     window.addEventListener('scroll', scrollCollect)
   }

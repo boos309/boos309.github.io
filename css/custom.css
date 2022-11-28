@@ -134,3 +134,9 @@ h6::before {
     transform: rotate(-1turn);
   }
 }
+
+/* 翻页按钮居中 */
+#pagination {
+    width: 100%;
+    margin: false;
+  }

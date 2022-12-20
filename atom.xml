@@ -6,7 +6,7 @@
   <link href="http://boos309.top/atom.xml" rel="self"/>
   
   <link href="http://boos309.top/"/>
-  <updated>2022-12-20T14:12:45.341Z</updated>
+  <updated>2022-12-20T13:43:31.154Z</updated>
   <id>http://boos309.top/</id>
   
   <author>
@@ -15,26 +15,6 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
-  
-  <entry>
-    <title>test</title>
-    <link href="http://boos309.top/post/d87f7e0c.html"/>
-    <id>http://boos309.top/post/d87f7e0c.html</id>
-    <published>2022-12-20T13:53:50.000Z</published>
-    <updated>2022-12-20T14:12:45.341Z</updated>
-    
-    <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">@font-face &#123;<br>  font-family: &#x27;CascadiaCodePL&#x27;;<br>  font-display: swap;<br>  src: url(&#x27;/butterflyChange/fonts/CascadiaCodePL.ttf&#x27;) format(&quot;truetype&quot;);<br>&#125;<br></code></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">font:<br><br> global-font-size: 15px<br><br> code-font-size: 14px<br><br> font-family: Genshin<br><br> code-font-family: CONSOLA<br></code></pre></td></tr></table></figure><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">#include&lt;stdio.h&gt;<br>#define maxlen 30<br><br>int main()<br>&#123;<br>    //创建文件流<br>    FILE* fp = fopen(&quot;./data.txt&quot;, &quot;r&quot;);<br>    int PosA, PosB;<br><br>    //2:检测文件是否打开成功；<br>    if (!fp) &#123;<br>        printf(&quot;打开失败！\n&quot;);<br>        return -1; //返回异常<br>    &#125;<br>    char str[maxlen];//缓冲区，用来储存数据<br><br>    fgets(str, maxlen, fp);<br><br>    printf(&quot;%s\n&quot;, str);<br><br>    for (int i = 0; str[i] - 48 &gt; 0; i++)<br>    &#123;<br>        if (str[i] != &#x27;,&#x27;)<br>            PosA = (str[i] - 48) + PosA * 10;<br>        if (str[i] == &#x27;,&#x27;)<br>        &#123;<br>            printf(&quot;%d\n&quot;, i);<br>            PosB = str[i] - 48;<br>        &#125;<br><br>    &#125;<br><br>    fclose(fp);<br>    printf(&quot;%d\n&quot;, PosA);<br>    printf(&quot;%d\n&quot;, PosB);<br>    return 0;<br><br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
-    
-    
-      
-      
-    <summary type="html">&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span c</summary>
-      
-    
-    
-    
-    
-  </entry>
   
   <entry>
     <title>Zoomeye相关</title>

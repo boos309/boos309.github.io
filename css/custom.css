@@ -117,37 +117,44 @@
 
  /* 首页文章卡片 */
   #recent-posts > .recent-post-item {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(6.5px) saturate(100%);
   }
   
   /* 首页侧栏卡片 */
   #aside-content .card-widget {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(6.5px) saturate(100%);
   }
   
   /* 文章页面正文背景 */
   div#post {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(6.5px) saturate(100%);
   }
   
   /* 分页页面 */
   div#page {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(6.5px) saturate(100%);
   }
   
   /* 归档页面 */
   div#archive {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(6.5px) saturate(100%);
   }
   
   /* 标签页面 */
   div#tag {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(6.5px) saturate(100%);
   }
   
   /* 分类页面 */
   div#category {
-    background: rgba(255, 255, 255, 0.9);
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(6.5px) saturate(100%);
   }
 
  /* 页脚与头图透明 */
@@ -183,7 +190,7 @@
   
   ::-webkit-scrollbar {
     width: 8px;
-    height: 10px;
+    height: 8px;
   }
   
   ::-webkit-scrollbar-thumb {
@@ -257,4 +264,3 @@ h6::before {
     width: 100%;
     margin: false;
   }
-  

@@ -6,7 +6,7 @@
   <link href="http://boos309.top/atom.xml" rel="self"/>
   
   <link href="http://boos309.top/"/>
-  <updated>2022-12-20T13:43:31.154Z</updated>
+  <updated>2022-12-21T08:55:54.856Z</updated>
   <id>http://boos309.top/</id>
   
   <author>
@@ -15,6 +15,26 @@
   </author>
   
   <generator uri="https://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>test</title>
+    <link href="http://boos309.top/post/d87f7e0c.html"/>
+    <id>http://boos309.top/post/d87f7e0c.html</id>
+    <published>2022-12-21T08:55:20.000Z</published>
+    <updated>2022-12-21T08:55:54.856Z</updated>
+    
+    <content type="html"><![CDATA[<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs plaintext">:root &#123;<br>    --blue-custom: #5ea6e5;<br>    --loading-color: rgba(207, 246, 247, 0.92);<br>    --border-color: #c9c9c9;<br>    --color-red: rgb(241, 71, 71);<br>    --color-orange: rgb(241, 162, 71);<br>    --color-yellow: rgb(241, 238, 71);<br>    --color-purple: rgb(179, 71, 241);<br>    --color-blue: rgb(102, 204, 255);<br>    --color-gray: rgb(226, 226, 226);<br>    --color-green: rgb(57, 197, 187);<br>    --color-whitegray: rgb(241, 241, 241);<br>    --color-pink: rgb(237, 112, 155);<br>    --color-black: rgb(0, 0, 0);<br>    --color-darkblue: rgb(97, 100, 159);<br>    --color-heoblue: rgb(66, 90, 239);<br>    --btn-bg: var(--theme-color);<br>    --scrollbar-color: var(--theme-color);<br>    --border-style: 1px solid rgba(169, 169, 169, 0.7);<br>    --hlnumber-bg: #282c34;<br>    --hltools-bg: #1c1c1c;<br>    --hl-bg: #282c34<br>&#125;<br><br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+      
+      
+    <summary type="html">&lt;figure class=&quot;highlight plaintext&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;span class=&quot;line&quot;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&quot;line&quot;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span c</summary>
+      
+    
+    
+    
+    
+  </entry>
   
   <entry>
     <title>Zoomeye相关</title>

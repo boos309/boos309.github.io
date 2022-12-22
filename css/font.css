@@ -1,11 +1,11 @@
 @font-face {
     font-family: 'CONSOLA';
     font-display: swap;
-    src: url('../font/CONSOLA.TTF') format("truetype");
+    src: url('../font/CONSOLA.woff2') format("woff2");
   }
   
 @font-face {
   font-family: 'Genshin';
   font-display: swap;
-  src: url('../font/Genshin.ttf') format("truetype");
+  src: url('../font/Genshin.subset.ttf') format("truetype");
  }
